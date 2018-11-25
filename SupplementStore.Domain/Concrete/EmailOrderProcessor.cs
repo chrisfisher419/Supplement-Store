@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -84,6 +85,9 @@ namespace SupplementStore.Domain.Concrete
                 {
                     mailMessage.BodyEncoding = Encoding.ASCII;
                 }
+
+                if (!Directory.Exists(emailSettings.FileLocation))
+                    Directory.CreateDirectory(emailSettings.FileLocation);
 
                 smtpClient.Send(mailMessage);
             }
